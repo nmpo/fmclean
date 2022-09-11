@@ -134,7 +134,17 @@ end
 theorem lem_irrefutable :
   ¬¬(P∨¬P)  :=
 begin
-  sorry,
+  intro nlem,
+  have lem: P \/ ¬P,
+    right,
+    intro hp,
+    have disj_pnp: P \/ ¬P,
+      left,
+      exact hp,
+    have contr := nlem disj_pnp,
+    contradiction,
+  have contr := nlem lem,
+  contradiction,
 end
 
 
