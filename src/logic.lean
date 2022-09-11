@@ -56,7 +56,7 @@ begin
   intro conj_pq,
   cases conj_pq with hp hq,
   split,
-    exact hq,
+    exact hq,    
     exact hp,
 end
 
@@ -68,13 +68,25 @@ end
 theorem impl_as_disj_converse :
   (¬P ∨ Q) → (P → Q)  :=
 begin
-  sorry,
+  intro disj_pq,
+  intro hp,
+  cases disj_pq,
+    have contr := disj_pq hp,
+    contradiction,
+
+    exact disj_pq,
 end
 
 theorem disj_as_impl :
   (P ∨ Q) → (¬P → Q)  :=
 begin
-  sorry,
+  intro disj_pq,
+  intro hnp,
+  cases disj_pq,
+    have contr := hnp disj_pq,
+    contradiction,
+
+    exact disj_pq,
 end
 
 
