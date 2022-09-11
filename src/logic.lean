@@ -207,7 +207,7 @@ begin
   intro n_disj_pq,
   split,
     intro hp,
-    
+
     --intro hq,
 end
 
@@ -321,7 +321,8 @@ end
 theorem impl_refl :
   P → P  :=
 begin
-  sorry,
+  intro hp,
+  exact hp,
 end
 
 ------------------------------------------------
