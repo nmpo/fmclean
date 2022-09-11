@@ -304,13 +304,28 @@ end
 theorem curry_prop :
   ((P∧Q)→R) → (P→(Q→R))  :=
 begin
-  sorry,
+  intro curry,
+  intro hp,
+  intro hq,
+
+  have conj_pq: P /\ Q,
+    split,
+      exact hp,
+      exact hq,
+  
+  have R := curry conj_pq,
+    exact R,
 end
 
 theorem uncurry_prop :
   (P→(Q→R)) → ((P∧Q)→R)  :=
 begin
-  sorry,
+  intro uncurry,
+  intro conj_pq,
+  cases conj_pq with hp hq,
+  have implic := uncurry hp,
+  have R := implic hq,
+  exact R,
 end
 
 
