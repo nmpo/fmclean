@@ -204,37 +204,68 @@ end
 theorem demorgan_disj :
   ¬(P∨Q) → (¬P ∧ ¬Q)  :=
 begin
-  sorry,
+  intro n_disj_pq,
+  split,
+    intro hp,
+    
+    --intro hq,
 end
 
 theorem demorgan_disj_converse :
   (¬P ∧ ¬Q) → ¬(P∨Q)  :=
 begin
-  sorry,
+  intro conj_np_nq,
+  intro disj_pq,
+  cases disj_pq,
+  cases conj_np_nq,
+    contradiction,
+  cases conj_np_nq,
+    contradiction,    
 end
 
 theorem demorgan_conj :
   ¬(P∧Q) → (¬Q ∨ ¬P)  :=
 begin
-  sorry,
+  intro n_conj_pq,
+  by_cases h: P,
+    left,
+    intro hq,
+    have conj_pq: P /\ Q,
+      split,
+      exact h,
+      exact hq,
+    have contr := n_conj_pq conj_pq,
+    contradiction,
+
+    right,
+    exact h,
 end
 
 theorem demorgan_conj_converse :
   (¬Q ∨ ¬P) → ¬(P∧Q)  :=
 begin
-  sorry,
+  intro disj_nq_np,
+  intro conj_pq,
+  cases conj_pq,
+  cases disj_nq_np,
+    contradiction,
+    contradiction,
 end
 
 theorem demorgan_conj_law :
   ¬(P∧Q) ↔ (¬Q ∨ ¬P)  :=
 begin
-  sorry,
+  split,
+    exact demorgan_conj P Q,
+    exact demorgan_conj_converse P Q,
 end
 
 theorem demorgan_disj_law :
   ¬(P∨Q) ↔ (¬P ∧ ¬Q)  :=
 begin
-  sorry,
+  split,
+    exact demorgan_disj P Q,
+    exact demorgan_disj_converse P Q,
 end
 
 ------------------------------------------------
