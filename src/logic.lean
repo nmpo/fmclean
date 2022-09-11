@@ -97,19 +97,33 @@ end
 theorem impl_as_contrapositive :
   (P → Q) → (¬Q → ¬P)  :=
 begin
-  sorry,
+  intro impl_pq,
+  intro hnq,
+  intro hp,
+    have hq := impl_pq hp,
+    have contr := hnq hq,
+    contradiction,
 end
 
 theorem impl_as_contrapositive_converse :
   (¬Q → ¬P) → (P → Q)  :=
 begin
-  sorry,
+  intro impl_nqnp,
+  intro hp,
+  by_cases hq: Q,
+    exact hq,
+
+    have hnp := impl_nqnp hq,
+    have contr := hnp hp,
+    contradiction,
 end
 
 theorem contrapositive_law :
   (P → Q) ↔ (¬Q → ¬P)  :=
 begin
-  sorry,
+  split,
+  exact impl_as_contrapositive P Q,
+  exact impl_as_contrapositive_converse P Q,
 end
 
 
