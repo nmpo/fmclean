@@ -493,7 +493,12 @@ end
 theorem demorgan_forall_converse :
   (∃x, ¬P x) → ¬(∀x, P x)  :=
 begin
-  sorry,
+  intro exist,
+  intro for_all,
+  cases exist with hx hnpx,
+  have hpx := for_all hx,
+  have contr := hnpx hpx,
+  contradiction,
 end
 
 theorem demorgan_forall_law :
