@@ -13,18 +13,18 @@ theorem doubleneg_intro :
 begin
   intro hp,
   intro hnp,
-  contradiction,
+  contradiction, --tenho p e np nos meus dados
 end
 
 theorem doubleneg_elim :
   ¬¬P → P  :=
 begin
   intro hnnp,
-  by_cases hnp: P,
-    exact hnp,
+  by_cases hp: P, --magia para ganhar p ou np
+    exact hp,--tenho p
 
-    have contr := hnnp hnp,
-    contradiction,
+    have contr := hnnp hp,
+    contradiction, -- tenho np e nnp nos meus dados
 end
 
 theorem doubleneg_law :
@@ -43,10 +43,10 @@ theorem disj_comm :
   (P ∨ Q) → (Q ∨ P)  :=
 begin
   intro disj_pq,
-  cases disj_pq,
-    right,
+  cases disj_pq,--separo minha disj em casos
+    right,--escolho-R
       exact disj_pq,
-    left,
+    left,--escolho-L
       exact disj_pq,
 end
 
@@ -54,8 +54,8 @@ theorem conj_comm :
   (P ∧ Q) → (Q ∧ P)  :=
 begin
   intro conj_pq,
-  cases conj_pq with hp hq,
-  split,
+  cases conj_pq with hp hq,--desmembro a conj dos dados
+  split,--split'o a conj do alvo
     exact hq,    
     exact hp,
 end
@@ -70,11 +70,11 @@ theorem impl_as_disj_converse :
 begin
   intro disj_pq,
   intro hp,
-  cases disj_pq,
-    have contr := disj_pq hp,
+  cases disj_pq,--separo minha disj em casos
+    have contr := disj_pq hp,--tenho p e np nos meus dados
     contradiction,
 
-    exact disj_pq,
+    exact disj_pq,--tenho o proprio alvo nos dados
 end
 
 theorem disj_as_impl :
@@ -82,11 +82,11 @@ theorem disj_as_impl :
 begin
   intro disj_pq,
   intro hnp,
-  cases disj_pq,
-    have contr := hnp disj_pq,
+  cases disj_pq,--separo minha disj em casos
+    have contr := hnp disj_pq,--tenho p e np nos meus dados
     contradiction,
 
-    exact disj_pq,
+    exact disj_pq,--tenho o proprio alvo nos dados
 end
 
 
@@ -110,7 +110,7 @@ theorem impl_as_contrapositive_converse :
 begin
   intro impl_nqnp,
   intro hp,
-  by_cases hq: Q,
+  by_cases hq: Q,--magia para q ou nq nos dados
     exact hq,
 
     have hnp := impl_nqnp hq,
@@ -135,10 +135,10 @@ theorem lem_irrefutable :
   ¬¬(P∨¬P)  :=
 begin
   intro nlem,
-  have lem: P \/ ¬P,
+  have lem: P \/ ¬P,--sub demonstracao da lem
     right,
     intro hp,
-    have disj_pnp: P \/ ¬P,
+    have disj_pnp: P \/ ¬P,--sub dem da sub demonstracao da lem
       left,
       exact hp,
     have contr := nlem disj_pnp,
@@ -157,12 +157,12 @@ theorem peirce_law_weak :
 begin
   intro pq_impl_p,
   intro hnp,
-  have impl_pq: P →  Q,
+  have impl_pq: P →  Q,--sub demonstracao
     intro hp,
-    contradiction,
-  have hp := pq_impl_p impl_pq,
+    contradiction,--tenho p e np nos meus dados da sub
+  have hp := pq_impl_p impl_pq,--obtenho p
   have contr := hnp hp,
-  contradiction,
+  contradiction,--tenho p e np nos meus dados
 end
 
 
@@ -175,8 +175,8 @@ theorem disj_as_negconj :
 begin
   intro disj_pq,
   intro n_conj_npnq,
-  cases n_conj_npnq,
-  cases disj_pq,
+  cases n_conj_npnq,--extraio minha conj
+  cases disj_pq,--separo minha disj em casos
     have contr := n_conj_npnq_left disj_pq,
     contradiction,
     have contr := n_conj_npnq_right disj_pq,
@@ -217,8 +217,8 @@ theorem demorgan_disj_converse :
 begin
   intro conj_np_nq,
   intro disj_pq,
-  cases disj_pq,
-    cases conj_np_nq,
+  cases disj_pq,--separo minha disj em partes
+    cases conj_np_nq,--extraio minha conj
       contradiction,
     cases conj_np_nq,
       contradiction,    
@@ -354,12 +354,12 @@ begin
   intro hp,
   intro hq,
 
-  have conj_pq: P /\ Q,
+  have conj_pq: P /\ Q,--sub demonstracao da conj P Q
     split,
       exact hp,
       exact hq,
   
-  have R := curry conj_pq,
+  have R := curry conj_pq,--consigo o R 
     exact R,
 end
 
@@ -369,8 +369,8 @@ begin
   intro uncurry,
   intro conj_pq,
   cases conj_pq with hp hq,
-    have implic := uncurry hp,
-    have R := implic hq,
+    have implic := uncurry hp,--uso o P na implicacao P Q R, obtenho implicacao Q R
+    have R := implic hq,--agora uso o Q na implicacao Q R obtenho assim o R
     exact R,
 end
 
@@ -489,7 +489,7 @@ theorem demorgan_forall :
   ¬(∀x, P x) → (∃x, ¬P x)  :=
 begin
   intro n_for_all,
-  
+  --
   
 end
 
