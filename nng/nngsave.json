@@ -175,39 +175,48 @@
     },
     {
       "lean": "example (P Q : Prop) (p : P) (h : P → Q) : Q :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "exact h p,"
     },
     {
       "lean": "lemma imp_self (P : Prop) : P → P :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro n,\nexact n,"
     },
     {
       "lean": "lemma maze (P Q R S T U: Prop)\n(p : P)\n(h : P → Q)\n(i : Q → R)\n(j : Q → T)\n(k : S → T)\n(l : T → U)\n: U :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "have q : Q := h p,\nhave t : T := j q,\nhave u : U := l t,\nexact u,"
     },
     {
       "lean": "lemma maze (P Q R S T U: Prop)\n(p : P)\n(h : P → Q)\n(i : Q → R)\n(j : Q → T)\n(k : S → T)\n(l : T → U)\n: U :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "have q : Q := h p,\nhave t : T := j q,\nhave u : U := l t,\nexact u,"
     },
     {
       "lean": "example (P Q : Prop) : P → (Q → P) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros p q,\nexact p,"
     },
     {
       "lean": "example (P Q R : Prop) : (P → (Q → R)) → ((P → Q) → (P → R)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intros implication_1 implication_2 p,\nhave q : Q := implication_2 p,\nhave implication_3 := implication_1 p,\nhave r : R := implication_3 q,\nexact r,"
     },
     {
       "lean": "lemma imp_trans (P Q R : Prop) : (P → Q) → ((Q → R) → (P → R)) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro hpq,\nintro hqr,\nintro hp,\nhave q : Q := hpq hp,\nhave r : R := hqr q,\nexact r,"
     },
     {
       "lean": "lemma contrapositive (P Q : Prop) : (P → Q) → (¬ Q → ¬ P) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro hpq,\nrepeat {rw not_iff_imp_false},\nintro hnq,\nintro hp,\nhave q : Q := hpq hp,\nhave boom := hnq q,\nexact boom,"
     },
     {
       "lean": "example (A B C D E F G H I J K L : Prop)\n(f1 : A → B) (f2 : B → E) (f3 : E → D) (f4 : D → A) (f5 : E → F)\n(f6 : F → C) (f7 : B → C) (f8 : F → G) (f9 : G → J) (f10 : I → J)\n(f11 : J → I) (f12 : I → H) (f13 : E → H) (f14 : H → K) (f15 : I → L)\n : A → L :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "intro ha,\napply f15,\napply f11,\napply f9,\napply f8,\napply f5,\napply f2,\napply f1,\nexact ha,"
     },
     {
       "lean": "example (P Q : Prop) (p : P) (q : Q) : P ∧ Q :=\n",
