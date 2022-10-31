@@ -54,39 +54,48 @@
     },
     {
       "lean": "lemma zero_mul (m : mynat) : 0 * m = 0 :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction m with p hp,\nrw mul_zero 0,\nrefl,\nrw mul_succ 0 p,\nrw hp,\nrw add_zero,\nrefl,"
     },
     {
       "lean": "lemma mul_one (m : mynat) : m * 1 = m :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw one_eq_succ_zero,\nrw mul_succ m 0,\nrw mul_zero m,\nrw zero_add m,\nrefl,"
     },
     {
       "lean": "lemma one_mul (m : mynat) : 1 * m = m :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction m with p hp,\nrw mul_zero 1,\nrefl,\nrw mul_succ 1 p,\nrw hp,\nrw succ_eq_add_one p,\nrefl,"
     },
     {
       "lean": "lemma mul_add (t a b : mynat) : t * (a + b) = t * a + t * b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with p hp,\nrw add_zero a,\nrw mul_zero t,\nrw add_zero (t*a),\nrefl,\nrw add_succ a p,\nrw mul_succ t (a+p),\nrw hp,\nrw mul_succ t p,\nrw add_assoc (t*a) (t*p) t,\nrefl,"
     },
     {
       "lean": "lemma mul_assoc (a b c : mynat) : (a * b) * c = a * (b * c) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction c with p hp,\nrw mul_zero (a*b),\nrw mul_zero b,\nrw mul_zero a,\nrefl,\nrw mul_succ,\nrw hp,\nrw <- mul_add a (b*p) b,\nrw succ_eq_add_one p,\nrw mul_add b p 1,\nrw mul_one b,\nrefl,"
     },
     {
       "lean": "lemma succ_mul (a b : mynat) : succ a * b = a * b + b :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with p hp,\nrw mul_zero (succ a),\nrw add_zero (a*0),\nrw mul_zero a,\nrefl,\nrw mul_succ (succ a) p,\nrw add_succ ((succ a) * p) a,\nrw hp,\nrw add_succ (a * (succ p)) p,\nrw succ_eq_add_one p,\nrw mul_add a p 1,\nrw mul_one a,\nrw add_right_comm (a * p) a p,\nrefl,"
     },
     {
       "lean": "lemma add_mul (a b t : mynat) : (a + b) * t = a * t + b * t :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction t with p hp,\nrw mul_zero (a+b),\nrw mul_zero a,\nrw mul_zero b,\nrw add_zero 0,\nrefl,\nrw mul_succ (a+b) p,\nrw hp,\nrw succ_eq_add_one p,\nrw mul_add a p 1,\nrw mul_one a,\nrw mul_add b p 1,\nrw mul_one b,\nrw add_right_comm (a*p) a (b*p + b),\nrw <- add_assoc (a*p) (b*p) b,\nrw add_assoc (a*p + b*p) b a,\nrw add_comm b a,\nrefl,"
     },
     {
       "lean": "lemma mul_comm (a b : mynat) : a * b = b * a :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "induction b with p hp,\nrw mul_zero a,\nrw zero_mul a,\nrefl,\nrw mul_succ a p,\nrw succ_mul p a,\nrw hp,\nrefl,\n"
     },
     {
       "lean": "lemma mul_left_comm (a b c : mynat) : a * (b * c) = b * (a * c) :=\n",
-      "editorText": "sorry"
+      "isSolved": true,
+      "editorText": "rw <- mul_assoc a b c,\nrw mul_comm a b,\nrw mul_assoc b a c,\nrefl,"
     },
     {
       "lean": "lemma zero_pow_zero : (0 : mynat) ^ (0 : mynat) = 1 :=\n",
